@@ -16,7 +16,12 @@ function App() {
       <div className = "min-h-screen w-6xl bg-[#333] flex flex-col items-center ">
         <h1 className = "mt-12 text-4xl font-bold">Convert Your File</h1>
         <h3 className = "mt-4 text-xl tracking-wide">Mengubah tipe file mu dengan{" "}   
-           <a className = "underline decoration-red-300 decoration-2">mudah!</a></h3>
+           <a className = "underline decoration-red-300 decoration-2">mudah!</a>
+        </h3>
+        <div className = "mt-12 w-xl h-64 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center">
+          <button className = "bg-[#808080] p-2 font-bold rounded-lg w-64 h-16">Pilih File</button>
+        </div>
+
       </div>
     </div>
   );
