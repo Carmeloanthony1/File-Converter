@@ -8,16 +8,26 @@ function App() {
   const [targetFORMAT, setTargetFORMAT] = useState("");
    
   const fileInputRef = useRef(null);
-  
-  const button_convert_click = () => {
-    fileInputRef.current.click(); //ketika di klik, event nya adalah menghubungkan ref ke button
-  }
 
   const opsiformat = {
     image: ["PDF", "PNG", "JPG", "WEBG"],
     document: ["PDF", "TXT", "DOCS"],
-    default : [" "];
+    default : [" "]
+  };
+
+  const FILE_OPTION = () => {
+    if(!realFORMAT) return opsiformat.default;
+
+    const lowercase = realFORMAT.toLowerCase();
+    if(["png", "jpg", "jpeg", "webp", "gif"].includes(lowercase)) return opsiformat.image;
+    else if(["doc", "docx", "txt", "pdf"].includes(lowercase)) return opsiformat.document;
+    return opsiformat.default;
+  };
+
+  const button_convert_click = () => {
+    fileInputRef.current.click(); //ketika di klik, event nya adalah menghubungkan ref ke button
   }
+  
   const Filechange = (event) => {
     const file = event.target.files[0];
     if(file){
