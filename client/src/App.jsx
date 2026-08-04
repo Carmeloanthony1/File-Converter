@@ -4,12 +4,20 @@ import './index.css';
 
 function App() {
   const [selected_file, setSelected_file] = useState(null);
+  const [realFORMAT, setRealFORMAT] = useState("");
+  const [targetFORMAT, setTargetFORMAT] = useState("");
+   
   const fileInputRef = useRef(null);
   
   const button_convert_click = () => {
-    fileInputRef.current.click();
+    fileInputRef.current.click(); //ketika di klik, event nya adalah menghubungkan ref ke button
   }
 
+  const opsiformat = {
+    image: ["PDF", "PNG", "JPG", "WEBG"],
+    document: ["PDF", "TXT", "DOCS"],
+    default : [" "];
+  }
   const Filechange = (event) => {
     const file = event.target.files[0];
     if(file){
