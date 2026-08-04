@@ -10,24 +10,36 @@ function App() {
   const fileInputRef = useRef(null);
 
   const opsiformat = {
-    image: ["PDF", "PNG", "JPG", "WEBG"],
-    document: ["PDF", "TXT", "DOCS"],
+    image: ["PDF", "PNG", "JPG", "WEBP"],
+    document: ["PDF", "TXT", "DOCX"],
     default : [" "]
   };
 
   const FILE_OPTION = () => {
     if(!realFORMAT) return opsiformat.default;
 
-    const lowercase = realFORMAT.toLowerCase();
-    if(["png", "jpg", "jpeg", "webp", "gif"].includes(lowercase)) return opsiformat.image;
-    else if(["doc", "docx", "txt", "pdf"].includes(lowercase)) return opsiformat.document;
+    const file_type = realFORMAT.toLowerCase();
+    if(["png", "jpg", "jpeg", "webp", "gif"].includes(file_type)) return opsiformat.image;
+    else if(["doc", "docx", "txt", "pdf"].includes(file_type)) return opsiformat.document;
     return opsiformat.default;
   };
 
   const button_convert_click = () => {
     fileInputRef.current.click(); //ketika di klik, event nya adalah menghubungkan ref ke button
   }
-  
+
+  const handleFILE = (event) => {
+    const file = event.target.files[0];
+    if(file){
+      setSelected_file(file);
+      const file_type = file.name.split('.').pop().toUpperCase();
+      setRealFORMAT(file_type);
+      
+      const avaible = FILE_OPTION();
+      setTargetFORMAT(avaible[0]);
+    }
+  };
+
   const Filechange = (event) => {
     const file = event.target.files[0];
     if(file){
@@ -54,8 +66,8 @@ function App() {
            <a className = "underline decoration-red-300 decoration-2">MUDAH!</a>
         </h3>
 
-        <div className = "mt-12 w-xl h-64 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center">
-          <input type = "file" ref = {fileInputRef} onChange={Filechange} className="hidden"/>
+        <div className = "mt-12 w-xl h-64 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-7">
+          <input type = "file" ref = {fileInputRef} onChange={handleFILE} className="hidden"/>
           <button 
             className = "bg-[#808080] p-2 font-bold rounded-lg w-64 h-16 flex flex-row items-center justify-center gap-2 cursor-pointer"
             onClick={button_convert_click}  
@@ -65,8 +77,14 @@ function App() {
             </svg>
             <h2 className = "text-xl">Pilih file</h2>
           </button>
+          <div className="flex flex-row gap-10 justify-center items-center">
+            <div className="bg-[#808080] p-2 rounded-lg w-22 h-12"></div>
+            <svg className= "w-8 h-8"xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><title xmlns="">arrow</title><path fill="currentColor" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/></svg>
+            <div className="bg-[#808080] p-2 rounded-lg w-22 h-12"></div>
+
+          </div>
         </div>
-        
+                
       </div>
     </div>
   );
