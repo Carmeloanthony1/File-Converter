@@ -68,7 +68,7 @@ function App() {
            <a className = "underline decoration-red-300 decoration-2">MUDAH!</a>
         </h3>
 
-        <div className = "mt-12 w-xl h-64 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-7">
+        <div className = "mt-12 w-xl h-90 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-7">
           <input type = "file" ref = {fileInputRef} onChange={handleFILE} className="hidden"/>
           <button 
             className = "bg-[#808080] p-2 font-bold rounded-lg w-64 h-16 flex flex-row items-center justify-center gap-2 cursor-pointer"
@@ -89,8 +89,9 @@ function App() {
                 <option key = {index} value = {format} className="text-white font-normal flex text-center">{format}</option>
               ))}
             </select>
-
           </div>
+          <p className="text-slate-300 font-medium max-w-xs">{ selected_file ? selected_file.name : " "}</p>
+          <button className="bg-[#808080] w-30 h-12 rounded-lg">Convert</button>
         </div>
                 
       </div>
