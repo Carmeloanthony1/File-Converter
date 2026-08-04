@@ -12,13 +12,15 @@ function App() {
   const opsiformat = {
     image: ["PDF", "PNG", "JPG", "WEBP"],
     document: ["PDF", "TXT", "DOCX"],
-    default : [" "]
+    default : ["-"]
   };
 
-  const FILE_OPTION = () => {
-    if(!realFORMAT) return opsiformat.default;
+  const FILE_OPTION = (format) => {
 
-    const file_type = realFORMAT.toLowerCase();
+    const current_format = format || realFORMAT;
+    if(!current_format) return opsiformat.default;
+
+    const file_type = current_format.toLowerCase();
     if(["png", "jpg", "jpeg", "webp", "gif"].includes(file_type)) return opsiformat.image;
     else if(["doc", "docx", "txt", "pdf"].includes(file_type)) return opsiformat.document;
     return opsiformat.default;
@@ -35,7 +37,7 @@ function App() {
       const file_type = file.name.split('.').pop().toUpperCase();
       setRealFORMAT(file_type);
       
-      const avaible = FILE_OPTION();
+      const avaible = FILE_OPTION(file_type);
       setTargetFORMAT(avaible[0]);
     }
   };
@@ -78,15 +80,14 @@ function App() {
             <h2 className = "text-xl">Pilih file</h2>
           </button>
           <div className="flex flex-row gap-10 justify-center items-center">
-            <div className="bg-[#808080] p-2 rounded-lg w-22 h-12">
+            <div className="bg-[#808080] p-2 rounded-lg w-22 h-12 flex justify-center items-center">
               {realFORMAT ? realFORMAT : "-"}
             </div>
             <svg className= "w-8 h-8"xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><title xmlns="">arrow</title><path fill="currentColor" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/></svg>
             <select value = {targetFORMAT} onChange={(e) => setTargetFORMAT(e.target.value)}
-              className="bg-[#808080] p-2 rounded-lg w-22 h-12">{FILE_OPTION(realFORMAT).map((format, index) => (
-                <option key = {index} value = {format} ></option>
-              ))};
-              
+              className="bg-[#808080] focus:bg-[#808080] active:bg-[#808080] p-2 rounded-lg w-22 h-12 flex text-center items-center">{FILE_OPTION(realFORMAT).map((format, index) => (
+                <option key = {index} value = {format} className="bg-[#555] text-white font-normal flex text-center">{format}</option>
+              ))}
             </select>
 
           </div>
