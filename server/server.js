@@ -32,3 +32,26 @@ const storage = multer.diskStorage({
         callback(null, uniquename);
     }
 });
+
+const upload = multer({ storage: storage });
+
+const verifytoken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader || authHeader.split(' ')[1];
+
+    if(!token){
+        return res.status(401).json({
+            error: "Silahkan login terlebih dahulu!"
+        });
+    }
+
+    JWT.verify(token, access_secret, (err, decoded) => {
+        if(err){
+            return res.status(401).json({
+                error: "Token tidak valid"
+            });
+        }
+        req.user = decoded;
+        next();
+    });
+};
