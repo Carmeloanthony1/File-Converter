@@ -4,6 +4,7 @@ const JWT = require('jsonwebtoken');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const crypto = require('crypto');
 
 const app = express();
 const port = 3000;
@@ -16,3 +17,18 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+const uploadDir = path.join(__dirname, 'uploads'); //kalau nanti ga ada foldernya, dia bikin sendiri
+if(!fs.existsSync(uploadDir)){
+    fs.mkdirSync(uploadDir);
+}
+
+const storage = multer.diskStorage({
+    destination: (req, res, callback) => {
+        callback(null, 'uploads/');
+    },
+    filename: (req, res, callback) => {
+        const uniquename = crypto.randomUUID() + '-' + file.originalname;
+        callback(null, uniquename);
+    }
+});
