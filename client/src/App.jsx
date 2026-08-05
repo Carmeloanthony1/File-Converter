@@ -50,6 +50,42 @@ function App() {
     }
   };
 
+  const handleCONVERT = async () => {
+    if(!selected_file){
+      alert("Silahkan memilih file untuk di convert!");
+      return
+    }
+
+    if(!targetFORMAT || targetFORMAT === "-"){
+      alert("Format tujuan tidak valid");
+    }
+
+    const formData = new FormData(); //untuk menyimpan file yang akan di upload
+    formData.append("file", selected_file); //kirim info ke backend
+    formData.append("targetformat", targetFORMAT); 
+
+    try {
+      const token = localStorage.getItem("access_token");
+
+      const response = await fetch("http://localhost:3000/api/convert", {
+        method: "POST",
+        headers: { "authorization" : `Bearer ${token}`},
+        body: formData
+      });
+
+      const data = await response.json();
+      if(response.ok){
+        alert("Proses konvert berhasil");
+        console.log("File konversi : ", data );
+      } else {
+        alert("Gagal konvert");
+      }
+    } catch(error){
+      console.error("Terjadi error saat melakukan convert : ", error);
+      alert("Terjadi error");
+    }
+  }
+
   
   return (
     <div className= "min-h-screen bg-[#333] text-slate-100 flex flex-col items-center">
@@ -85,13 +121,13 @@ function App() {
             </div>
             <svg className= "w-8 h-8"xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><title xmlns="">arrow</title><path fill="currentColor" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/></svg>
             <select value = {targetFORMAT} onChange={(e) => setTargetFORMAT(e.target.value)}
-              className="bg-[#808080] p-2 rounded-lg w-22 h-12 flex text-center justify-center items-center">{FILE_OPTION(realFORMAT).map((format, index) => (
-                <option key = {index} value = {format} className="text-white font-normal flex text-center">{format}</option>
+              className="bg-[#808080] p-2 rounded-lg w-22 h-12 flex text-center justify-center items-center cursor-pointer">{FILE_OPTION(realFORMAT).map((format, index) => (
+                <option key = {index} value = {format} className="text-white font-normal flex text-center cursor-pointer">{format}</option>
               ))}
             </select>
           </div>
           <p className="text-slate-300 font-medium max-w-xs">{ selected_file ? selected_file.name : " "}</p>
-          <button className="bg-[#808080] w-30 h-12 rounded-lg">Convert</button>
+          <button className="bg-[#808080] w-30 h-12 rounded-lg cursor-pointer">Convert</button>
         </div>
                 
       </div>
