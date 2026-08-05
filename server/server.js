@@ -55,3 +55,35 @@ const verifytoken = (req, res, next) => {
         next();
     });
 };
+
+app.post('/api/convert', verifytoken, upload.single('file'), (req, res) => { //mau pake harus login dulu
+    try {
+        const uploadFILE = req.file;
+        const targetFORMAT = req.body.targetFORMAT;
+
+        if(!uploadFILE){
+            return res.status(400).json({
+                error: "File tidak di temukan atau gagal di unggah"
+            });
+        }
+
+        console.log('Nama file : ', uploadFILE.originalname);
+        console.log('Ukuran file : ', uploadFILE.size, "bytes");
+        console.log('Target tipe : ', targetFORMAT);
+
+        return res.status(200).json({
+            message: "File berhasil di konversi",
+            filename: uploadFILE.originalname,
+            targetFORMAT : targetFORMAT
+        });
+    } catch (error){
+        console.error("error server : ", error);
+        return res.status(500).json({
+            error: "Terjadi sebuah kesalahan pada server"
+        });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server terkoneksi di port ${port}`);
+});
