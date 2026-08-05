@@ -43,9 +43,10 @@ function App() {
     const file = event.target.files[0];
     if(file){
       const filesize = (file.size / (1024 * 1024)).toFixed(1);
-      if(parseFloat(filesize) > 100){
+      if(parseFloat(filesize) > 1){
         setFilesize(filesize);
         setIslogin_open(true);
+        return;
       }
 
       setSelected_file(file);
@@ -78,7 +79,7 @@ function App() {
 
     const formData = new FormData(); //untuk menyimpan file yang akan di upload
     formData.append("file", selected_file); //kirim info ke backend
-    formData.append("targetFORMAT", targetFORMAT); 
+    formData.append("targetFORMAT", targetFORMAT === "-"); 
 
     try {
       const token = localStorage.getItem("access_token");
