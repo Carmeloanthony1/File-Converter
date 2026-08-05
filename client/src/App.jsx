@@ -1,12 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, use } from "react";
 import './App.css';
 import './index.css'; 
+import Login_Popup from './components/Login_Popup';
 
 function App() {
   const [selected_file, setSelected_file] = useState(null);
   const [realFORMAT, setRealFORMAT] = useState("");
   const [targetFORMAT, setTargetFORMAT] = useState("");
    
+
+  const [islogin_open, setIslogin_open] = useState(false);
+  const [filesize, setFilesize] = useState(0);
+
   const fileInputRef = useRef(null);
 
   const opsiformat = {
@@ -37,6 +42,12 @@ function App() {
   const handleFILE = (event) => {
     const file = event.target.files[0];
     if(file){
+      const filesize = (file.size / (1024 * 1024)).toFixed(1);
+      if(parseFloat(filesize) > 100){
+        setFilesize(filesize);
+        setIslogin_open(true);
+      }
+
       setSelected_file(file);
       const file_type = file.name.split('.').pop().toUpperCase();
       setRealFORMAT(file_type);
@@ -139,6 +150,7 @@ function App() {
         </div>
                 
       </div>
+      <Login_Popup isOpen = {islogin_open} onClose = {() => setIslogin_open(false)} filesize = {filesize}/>
     </div>
   );
 }
