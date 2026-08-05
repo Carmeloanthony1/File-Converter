@@ -24,10 +24,10 @@ if(!fs.existsSync(uploadDir)){
 }
 
 const storage = multer.diskStorage({
-    destination: (req, res, callback) => {
+    destination: (req, file, callback) => {
         callback(null, 'uploads/');
     },
-    filename: (req, res, callback) => {
+    filename: (req, file, callback) => {
         const uniquename = crypto.randomUUID() + '-' + file.originalname;
         callback(null, uniquename);
     }
@@ -37,7 +37,7 @@ const upload = multer({ storage: storage });
 
 const verifytoken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
-    const token = authHeader || authHeader.split(' ')[1];
+    const token = authHeader && authHeader.split(' ')[1];
 
     if(!token){
         return res.status(401).json({
@@ -56,10 +56,10 @@ const verifytoken = (req, res, next) => {
     });
 };
 
-app.post('/api/convert', verifytoken, upload.single('file'), (req, res) => { //mau pake harus login dulu
+app.post('/api/convert', upload.single('file'), (req, res) => { //mau pake harus login dulu
     try {
         const uploadFILE = req.file;
-        const targetFORMAT = req.body.targetFORMAT;
+        const targetFORMAT = req.body.targetformat || req.body.targetFORMAT;
 
         if(!uploadFILE){
             return res.status(400).json({

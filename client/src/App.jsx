@@ -29,7 +29,11 @@ function App() {
   const button_convert_click = () => {
     fileInputRef.current.click(); //ketika di klik, event nya adalah menghubungkan ref ke button
   }
-
+  const namafile_afterconvert = () => {
+    if(!selected_file) return "";
+    const namefile = selected_file.name.substring(0, selected_file.name.lastIndexOf("."));
+    return `${namefile}.${targetFORMAT.toLocaleLowerCase()}`;
+  }
   const handleFILE = (event) => {
     const file = event.target.files[0];
     if(file){
@@ -53,16 +57,17 @@ function App() {
   const handleCONVERT = async () => {
     if(!selected_file){
       alert("Silahkan memilih file untuk di convert!");
-      return
+      return;
     }
 
     if(!targetFORMAT || targetFORMAT === "-"){
       alert("Format tujuan tidak valid");
+      return;
     }
 
     const formData = new FormData(); //untuk menyimpan file yang akan di upload
     formData.append("file", selected_file); //kirim info ke backend
-    formData.append("targetformat", targetFORMAT); 
+    formData.append("targetFORMAT", targetFORMAT); 
 
     try {
       const token = localStorage.getItem("access_token");
@@ -78,7 +83,7 @@ function App() {
         alert("Proses konvert berhasil");
         console.log("File konversi : ", data );
       } else {
-        alert("Gagal konvert");
+        alert(data.error || "Gagal konvert");
       }
     } catch(error){
       console.error("Terjadi error saat melakukan convert : ", error);
@@ -103,7 +108,7 @@ function App() {
            <a className = "underline decoration-red-300 decoration-2">MUDAH!</a>
         </h3>
 
-        <div className = "mt-12 w-xl h-90 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-7">
+        <div className = "mt-12 w-xl min-h-[360px] py-8 px-6 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-7">
           <input type = "file" ref = {fileInputRef} onChange={handleFILE} className="hidden"/>
           <button 
             className = "bg-[#808080] p-2 font-bold rounded-lg w-64 h-16 flex flex-row items-center justify-center gap-2 cursor-pointer"
@@ -125,7 +130,11 @@ function App() {
               ))}
             </select>
           </div>
-          <p className="text-slate-300 font-medium max-w-xs">{ selected_file ? selected_file.name : " "}</p>
+          <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-5 w-full px-4">
+            <p className="text-slate-200 font-medium text-right">{ selected_file ? selected_file.name : " "}</p>
+            <svg className= "w-3 h-3 text-slate-300 shrink-0"xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><title xmlns="">arrow</title><path fill="currentColor" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/></svg>
+            <p className="text-slate-200 font-medium text-left">{namafile_afterconvert()}</p>
+          </div>
           <button onClick = {handleCONVERT} className="bg-[#808080] w-30 h-12 rounded-lg cursor-pointer">Convert</button>
         </div>
                 
