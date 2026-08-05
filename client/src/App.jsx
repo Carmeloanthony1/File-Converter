@@ -84,9 +84,8 @@ function App() {
       console.error("Terjadi error saat melakukan convert : ", error);
       alert("Terjadi error");
     }
-  }
+  };
 
-  
   return (
     <div className= "min-h-screen bg-[#333] text-slate-100 flex flex-col items-center">
       <nav className="w-full bg-[#808080] h-15 flex items-center p-5 justify-between">
@@ -127,7 +126,7 @@ function App() {
             </select>
           </div>
           <p className="text-slate-300 font-medium max-w-xs">{ selected_file ? selected_file.name : " "}</p>
-          <button className="bg-[#808080] w-30 h-12 rounded-lg cursor-pointer">Convert</button>
+          <button onClick = {handleCONVERT} className="bg-[#808080] w-30 h-12 rounded-lg cursor-pointer">Convert</button>
         </div>
                 
       </div>
