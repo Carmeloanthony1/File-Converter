@@ -1,5 +1,5 @@
 import react from 'react';
-export default function Login_Popup({ isOpen, onClose, filesize }) {
+export default function Signup_Popup({ isOpen, onClose, filesize }) {
     if(!isOpen){
         return null;
     }
