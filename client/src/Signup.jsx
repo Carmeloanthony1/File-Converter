@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup(){
+    const navigate = useNavigate();
     const [forminput, setForminput] = useState({
         username: '',
         email: '',
@@ -43,9 +45,9 @@ export default function Signup(){
                 alert("Sign up berhasil");
                 if(data.token){
                     localStorage.setItem('access_token', data.token);
-                    //window.location.href = '/';
+                    window.location.href = '/';
                 } else {
-                    //window.location.href = '/login';
+                    window.location.href = '/login';
                 }
             } else {
                 setErrormessage(data.message || "Gagal melakukan sign up");
@@ -69,21 +71,22 @@ export default function Signup(){
                 <form onSubmit={handle_Submit} className="flex flex-col gap-4 justify-center items-center">
                     <input 
                         type = "text" name = "username" placeholder="Masukan username anda..." value = {forminput.username}
-                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white-400 border-2 text-white text-lg">
+                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <input 
                         type = "email" name = "email" placeholder="Masukan email anda..." value = {forminput.email}
-                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white-400 border-2 text-white text-lg">
+                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <input 
                         type = "password" name = "password" placeholder="Masukan password anda..." value = {forminput.password}
-                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white-400 border-2 text-white text-lg">
+                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <input 
                         type = "password" name = "confirm_password" placeholder="Masukan password anda kembali" value = {forminput.confirm_password}
-                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white-400 border-2 text-white text-lg">
+                        onChange={handle_Input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <button type = "submit" disabled = {loading} className= "mt-4 p-3 w-30 rounded-lg border-white-400 border-2 bg-[#808080]">{loading ? 'Mohon menunggu' : 'SIGN UP'}</button>
+                    <p className='font-bold text-md'>sudah punya akun? <a href = "/login" className="text-white cursor-pointer hover:text-blue-400">login</a></p>
                 </form>
             </div>
         </div>
