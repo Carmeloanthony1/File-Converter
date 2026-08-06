@@ -25,5 +25,36 @@ export default function Signup(){
             setErrormessage('Password tidak cocok, silahkan mengisi password yang sama');
             return;
         }
-    }
+        setLoading(true);
+
+        try {
+            const response = await fetch('http://localhost:3000/api/auth/signup', {
+                method : 'POST',
+                headers : { 'Content-Type': 'application/json'},
+                body : JSON.stringify({
+                    username: forminput.username,
+                    email: forminput.email,
+                    password: forminput.password
+                })
+            });
+
+            const data = await response.json();
+            if(response.ok){
+                alert("Sign up berhasil");
+                if(data.token){
+                    localStorage.setItem('access_token', data.token);
+                    window.location.href = '/';
+                } else {
+                    window.location.href = '/login';
+                }
+            } else {
+                setErrormessage(data.message || "Gagal melakukan sign up");
+            }
+        } catch (error){
+            console.error('Error dalam melakukan sign up', error);
+            setErrormessage('terjadi sebuah kesalahan server'); 
+        } finally {
+            setLoading(false);
+        }
+    };
 }
