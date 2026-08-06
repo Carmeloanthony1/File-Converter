@@ -2,8 +2,9 @@ import { useState, useRef, use } from "react";
 import './App.css';
 import './index.css'; 
 import Signup_Popup from './components/Signup_Popup';
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+function Home() {
   const [selected_file, setSelected_file] = useState(null);
   const [realFORMAT, setRealFORMAT] = useState("");
   const [targetFORMAT, setTargetFORMAT] = useState("");
@@ -156,4 +157,11 @@ function App() {
   );
 }
 
-export default App;
+export default function App(){
+  return(
+    <Routes>
+      <Route path = "/" element={<Home/>}/>
+      <Route path = "/signup" element= {<signup/>}/>
+    </Routes>
+  );
+}

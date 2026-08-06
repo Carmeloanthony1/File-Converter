@@ -43,9 +43,9 @@ export default function Signup(){
                 alert("Sign up berhasil");
                 if(data.token){
                     localStorage.setItem('access_token', data.token);
-                    window.location.href = '/';
+                    //window.location.href = '/';
                 } else {
-                    window.location.href = '/login';
+                    //window.location.href = '/login';
                 }
             } else {
                 setErrormessage(data.message || "Gagal melakukan sign up");
@@ -57,4 +57,9 @@ export default function Signup(){
             setLoading(false);
         }
     };
+    return (
+        <div className = "min-h-screen bg-[#333] text-white flex items-center justify-center p-4">
+            <h2>gay</h2>
+        </div>
+    )
 }
