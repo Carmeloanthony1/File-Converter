@@ -17,7 +17,7 @@ export default function Signup_Popup({ isOpen, onClose, filesize }) {
                 <h3 className='font-bold text-lg'>File anda saat ini berukuran <span className='font-bold text-blue-300'>{filesize} MB</span></h3>
                 <h1 className='text-lg my-3 font-bold px-9'>Ingin convert file yang lebih besar?</h1>
                 <h2 className='text-xl font-bold px-9'>signup untuk melanjutkan</h2>
-                <button 
+                <button a href = "" 
                     className = "h-12 my-10 w-25 font-bold rounded-lg border-2 cursor-pointer bg-[#808080] hover:bg-slate-700 transition-colors transition-in-out active:scale-95">SIGN UP 
                 </button>
             </div>

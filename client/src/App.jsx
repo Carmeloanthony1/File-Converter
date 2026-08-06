@@ -43,7 +43,7 @@ function App() {
     const file = event.target.files[0];
     if(file){
       const filesize = (file.size / (1024 * 1024)).toFixed(1);
-      if(parseFloat(filesize) > 1){
+      if(parseFloat(filesize) > 100){
         setFilesize(filesize);
         setIs_sign_open(true);
         return;
