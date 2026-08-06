@@ -3,7 +3,7 @@ import './App.css';
 import './index.css'; 
 import Signup_Popup from './components/Signup_Popup';
 import { Routes, Route } from "react-router-dom";
-
+import Signup from './Signup'
 function Home() {
   const [selected_file, setSelected_file] = useState(null);
   const [realFORMAT, setRealFORMAT] = useState("");
@@ -161,7 +161,7 @@ export default function App(){
   return(
     <Routes>
       <Route path = "/" element={<Home/>}/>
-      <Route path = "/signup" element= {<signup/>}/>
+      <Route path = "/signup" element= {<Signup/>}/>
     </Routes>
   );
 }

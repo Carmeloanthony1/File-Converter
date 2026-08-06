@@ -58,8 +58,8 @@ export default function Signup(){
         }
     };
     return (
-        <div className = "min-h-screen bg-[#333] text-white flex items-center justify-center p-4">
-            <h2>gay</h2>
+        <div className="min-h-screen bg-[#333] text-white flex items-center justify-center p-4">
+            <h2>test</h2>
         </div>
     )
 }
