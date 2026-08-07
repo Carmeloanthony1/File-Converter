@@ -82,7 +82,7 @@ function Home() {
 
     const formData = new FormData(); //untuk menyimpan file yang akan di upload
     formData.append("file", selected_file); //kirim info ke backend
-    formData.append("targetFORMAT", targetFORMAT === "-"); 
+    formData.append("targetFORMAT", targetFORMAT); 
 
     try {
       const token = localStorage.getItem("access_token");
@@ -97,6 +97,7 @@ function Home() {
       if(response.ok){
         alert("Proses konvert berhasil");
         console.log("File konversi : ", data );
+        window.open(data.downloadURL, '_blank');
       } else {
         alert(data.error || "Gagal konvert");
       }
