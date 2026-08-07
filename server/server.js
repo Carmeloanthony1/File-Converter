@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const crypto = require('crypto');
+const convert_route = require('./convert');
 
 const app = express();
 const port = 3000;
@@ -16,7 +17,9 @@ app.use(cors({
     credentials : true //dia kasih izin ke port 5173 buat nanti tukeran data/komunikasi
 }));
 
+app.use('/converted', express.static(path.join(__dirname, 'converted')));
 app.use(express.json());
+app.use('/api', convert_route);
 
 const uploadDir = path.join(__dirname, 'uploads'); //kalau nanti ga ada foldernya, dia bikin sendiri
 if(!fs.existsSync(uploadDir)){
@@ -56,34 +59,8 @@ const verifytoken = (req, res, next) => {
     });
 };
 
-app.post('/api/convert', upload.single('file'), (req, res) => { //mau pake harus login dulu
-    try {
-        const uploadFILE = req.file;
-        const targetFORMAT = req.body.targetformat || req.body.targetFORMAT;
-
-        if(!uploadFILE){
-            return res.status(400).json({
-                error: "File tidak di temukan atau gagal di unggah"
-            });
-        }
-
-        console.log('Nama file : ', uploadFILE.originalname);
-        console.log('Ukuran file : ', uploadFILE.size, "bytes");
-        console.log('Target tipe : ', targetFORMAT);
-
-        return res.status(200).json({
-            message: "File berhasil di konversi",
-            filename: uploadFILE.originalname,
-            targetFORMAT : targetFORMAT
-        });
-    } catch (error){
-        console.error("error server : ", error);
-        return res.status(500).json({
-            error: "Terjadi sebuah kesalahan pada server"
-        });
-    }
-});
-
+app.locals.verifytoken = verifytoken;
+app.use('/api', verifytoken, convert_route);
 app.listen(port, () => {
     console.log(`Server terkoneksi di port ${port}`);
 });
