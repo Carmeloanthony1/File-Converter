@@ -3,6 +3,7 @@ import './App.css';
 import './index.css'; 
 import Signup_Popup from './components/Signup_Popup';
 import { Routes, Route } from "react-router-dom";
+import axios from "axios";
 import Signup from './Signup'
 import Login from './Login'
 
@@ -11,7 +12,9 @@ function Home() {
   const [realFORMAT, setRealFORMAT] = useState("");
   const [targetFORMAT, setTargetFORMAT] = useState("");
    
-
+  const [is_converting, setIs_converting] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [status, setStatus] = useState("");
   const [is_sign_open, setIs_sign_open] = useState(false);
   const [filesize, setFilesize] = useState(0);
 
@@ -85,34 +88,60 @@ function Home() {
     formData.append("targetFORMAT", targetFORMAT); 
 
     try {
+      setIs_converting(true);
+      setProgress(10);
+      setStatus("Mengunggah & Mengonversi file...");
       const token = localStorage.getItem("access_token");
 
-      const response = await fetch("http://localhost:3000/api/convert", {
-        method: "POST",
-        headers: { "authorization" : `Bearer ${token}`},
-        body: formData
+      const response = await axios.post("http://localhost:3000/api/convert", formData, {
+        headers: { 
+          "authorization": `Bearer ${token}`,
+          "Content-Type": "multipart/form-data"
+        }
+      });
+      
+      const data = response.data;
+      setProgress(50);
+      setStatus("Mendownload hasil konversi...");
+
+      const fileresponse = await axios.get(data.downloadURL, { 
+        responseType: 'blob',
+        onDownloadProgress: (progressEvent) => {
+          if(progressEvent.total){
+            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            const total_progress = 50 + Math.round(percent / 2);
+            setProgress(total_progress);
+          } else {
+            setProgress(85);
+          }
+        }
       });
 
-      const data = await response.json();
-      if(response.ok){
-        alert("Proses konvert berhasil");
-        const file_response = await fetch(data.downloadURL);
-        const blob = await file_response.blob();
+      const blob = new Blob([fileresponse.data]);
+      const blob_url = window.URL.createObjectURL(blob);
 
-        const blobURL = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blob_url;
+      link.download = data.filename || namafile_afterconvert();
+      link.click();
 
-        const link = document.createElement('a');
-        link.href = blobURL;
-        link.download = data.filename || namafile_afterconvert();
-        link.click();
+      window.URL.revokeObjectURL(blob_url);
 
-        window.URL.revokeObjectURL(blobURL);
-      } else {
-        alert(data.error || "Gagal konvert");
-      }
+      setProgress(100);
+      setStatus("Selesai!");
+
+      setTimeout(() => {
+        setIs_converting(false);
+        setProgress(0);
+        setStatus("");
+      }, 1500);
+
     } catch(error){
       console.error("Terjadi error saat melakukan convert : ", error);
-      alert("Terjadi error");
+      alert(error.response?.data?.error || "Terjadi kesalahan pada server");
+      setIs_converting(false);
+      setProgress(0);
+      setStatus("");
     }
   };
 
