@@ -51,7 +51,7 @@ export default function Login(){
 
     return (
         <div className="min-h-screen bg-[#333] text-white flex items-center justify-center p-4">
-            <div className="bg-[#444]/90 backdrop-blur-md border-2 border-white/40 h-140 w-lg flex flex-col justify-center gap-4 p-5">
+            <div className="bg-[#444]/90 backdrop-blur-md border-2 border-white/90 h-140 w-lg flex flex-col rounded-lg justify-center gap-4 p-5">
                 <h1 className="text-3xl font-bold flex flex-start justify-center">Log in</h1>
                 {errormessage && (
                     <div className="bg-red-500/20 border border-red-500 text-red-300 p-3 rounded-lg text-sm text-center">
@@ -61,14 +61,14 @@ export default function Login(){
                 <form onSubmit={handle_submit} className="flex flex-col gap-4 justify-center items-center">
                     <input 
                         type = "email" name = "email" placeholder="Masukan email anda..." value = {forminput.email}
-                        onChange={handle_input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
+                        onChange={handle_input} className="p-3 w-80 bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <input 
                         type = "password" name = "password" placeholder="Masukan password anda..." value = {forminput.password}
-                        onChange={handle_input} className="p-3 w-sm bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
+                        onChange={handle_input} className="p-3 w-80 bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <button type = "submit" disabled = {loading} className= "mt-4 p-3 w-30 rounded-lg border-white-400 border-2 bg-[#808080]">{loading ? 'Mohon menunggu' : 'SIGN UP'}</button>
-                    <p className='font-bold text-md'>belum punya akun? <a href = "/signup" className="text-white cursor-pointer hover:text-blue-400">sign up</a></p>
+                    <p className='text-md'>belum punya akun? <a href = "/signup" className="text-white cursor-pointer hover:text-blue-400">sign up</a></p>
                 </form>
             </div>
         </div>
