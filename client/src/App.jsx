@@ -96,14 +96,17 @@ function Home() {
       const data = await response.json();
       if(response.ok){
         alert("Proses konvert berhasil");
+        const file_response = await fetch(data.downloadURL);
+        const blob = await file_response.blob();
+
+        const blobURL = window.URL.createObjectURL(blob);
+
         const link = document.createElement('a');
-        link.href = data.downloadURL;
-        link.setAttribute('download', data.filename || namafile_afterconvert());
-        link.target = '_self';
-        
-        document.body.appendChild(link);
+        link.href = blobURL;
+        link.download = data.filename || namafile_afterconvert();
         link.click();
-        document.body.removeChild(link);
+
+        window.URL.revokeObjectURL(blobURL);
       } else {
         alert(data.error || "Gagal konvert");
       }
