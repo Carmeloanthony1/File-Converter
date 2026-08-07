@@ -17,3 +17,30 @@ const storage = multer.diskStorage({
         callback(null, unique);
     }
 });
+
+const upload = multer({ storage: storage });
+
+router.post('/convert', upload.single('file'), async (req, res) => {
+    try {
+        const uploadFile = req.file;
+        const targetformat = (req.body.targetformat || req.body.targetformat || '').toLoweraCase();
+        if(!uploadFile){
+            return res.status(400).json({
+                error : "File tidak di temukan"
+            });
+        }
+
+        const inputpath = uploadFile.path;
+        const ouputfilename = `converted-${Date.now()}.${targetformat}`;
+        const outputpath = path.join(__dirname, 'converted', ouputfilename);
+
+        if(['jpg', 'jpeg', 'png', 'webp'].includes(targetformat)){
+            await sharp(inputpath)
+                .toFormat(targetformat === 'jpg' ? 'jpeg' : targetformat)
+                .toFile(outputpath);
+        } else if (targetformat === "pdf") {
+
+        }
+    };
+    }
+});
