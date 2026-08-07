@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Folder Temporary Server & Uploads
+server/uploads/
+server/converted/
