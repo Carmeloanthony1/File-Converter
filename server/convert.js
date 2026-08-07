@@ -61,7 +61,7 @@ router.post('/convert', upload.single('file'), async (req, res) => {
             const pdfBytes = await pdfDoc.save();
             fs.writeFileSync(outputpath, pdfBytes);
         } else {
-            fs.unlinkSync(inputpath);
+            if(fs.existsSync(inputpath)) fs.unlinkSync(inputpath);
             return res.status(400).json({
                 error: `Format ${targetformat} belum di dukung`
             });

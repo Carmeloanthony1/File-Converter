@@ -96,8 +96,14 @@ function Home() {
       const data = await response.json();
       if(response.ok){
         alert("Proses konvert berhasil");
-        console.log("File konversi : ", data );
-        window.open(data.downloadURL, '_blank');
+        const link = document.createElement('a');
+        link.href = data.downloadURL;
+        link.setAttribute('download', data.filename || namafile_afterconvert());
+        link.target = '_self';
+        
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } else {
         alert(data.error || "Gagal konvert");
       }
