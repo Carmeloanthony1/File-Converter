@@ -24,5 +24,7 @@ dist-ssr
 *.sw?
 
 # Folder Temporary Server & Uploads
-server/uploads/
-server/converted/
+**/server/converted/*
+**/server/uploads/*
+!**/server/converted/.gitkeep
+!**/server/uploads/.gitkeep
