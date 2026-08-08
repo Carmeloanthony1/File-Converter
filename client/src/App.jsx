@@ -138,6 +138,15 @@ function Home() {
     }
   };
 
+  const handleMANUAL_DOWNLOAD = () => {
+    if(!download_URL) return;
+    
+    const link = document.createElement('a');
+    link.href = download_URL;
+    link.download = download_filename;
+    link.click();
+  }
+  
   return (
     <div className= "min-h-screen bg-[#333] text-slate-100 flex flex-col items-center">
       <nav className="w-full bg-[#808080] h-15 flex items-center p-5 justify-between">
@@ -183,20 +192,28 @@ function Home() {
             <p className="text-slate-200 font-medium text-left">{namafile_afterconvert()}</p>
           </div>
               {is_converting ? (
-                <div className="w-full px-8 flex flex-col items items-center gap-2">
+                <div className="w-full px-8 flex flex-col items-center gap-2">
                   <div className="w-full bg-[#333] h-4 rounded-full overflow-hidden border border-slate-500">
                     <div className="bg-emerald-600 h-full transition-all duration-300 ease-out" style={{ width:`${progress}%`}}></div>
                   </div>
-                  <div className="flex justify-between w-full text-sm text text-slate-300 font-medium px-1">
+                  <div className="flex justify-between w-full text-sm text-slate-300 font-medium px-1">
                     <span>{status}</span>
                     <span>{progress}</span>
                   </div>
+                  {download_URL && (
+                    <div className="flex flex-row gap-3 mt-2">
+                      <button onClick={handleMANUAL_DOWNLOAD} 
+                        className="mt-2 bg-emerald-600 hover:bg-emerald-500 px-6 py-2.5 rounded-lg font-bold text-white flex items-center gap-2 cursor-pointer transition-all active:scale-95 shadow-md">Download File
+                      </button>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <button onClick={handleCONVERT} className="bg-[#808080] w-30 h-12 rounded-lg font-bold cursor-pointer hover:bg-slate-600 transition-all active:scale-95">convert</button>
+              ) : ( 
+                <button onClick={handleCONVERT} className="bg-[#808080] w-30 h-12 rounded-lg font-bold cursor-pointer hover:bg-slate-600 transition-all active:scale-95">
+                  Convert
+                </button>
               )}
         </div>
-                
       </div>
       <Signup_Popup isOpen = {is_sign_open} onClose = {() => setIs_sign_open(false)} filesize = {filesize}/>
     </div>
