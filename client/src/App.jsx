@@ -189,7 +189,19 @@ function Home() {
             <svg className= "w-3 h-3 text-slate-300 shrink-0"xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15"><title xmlns="">arrow</title><path fill="currentColor" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/></svg>
             <p className="text-slate-200 font-medium text-left">{namafile_afterconvert()}</p>
           </div>
-          <button onClick = {handleCONVERT} className="bg-[#808080] w-30 h-12 rounded-lg cursor-pointer">Convert</button>
+              {is_converting ? (
+                <div className="w-full px-8 flex flex-col items items-center gap-2">
+                  <div className="w-full bg-[#333] h-4 rounded-full overflow-hidden border border-slate-500">
+                    <div className="bg-emerald-600 h-full transition-all duration-300 ease-out" style={{ width:`${progress}%`}}></div>
+                  </div>
+                  <div className="flex justify-between w-full text-sm text text-slate-300 font-medium px-1">
+                    <span>{status}</span>
+                    <span>{progress}</span>
+                  </div>
+                </div>
+              ) : (
+                <button onClick={handleCONVERT} className="bg-[#808080] w-30 h-12 rounded-lg font-bold cursor-pointer hover:bg-slate-600 transition-all active:scale-95">convert</button>
+              )}
         </div>
                 
       </div>
