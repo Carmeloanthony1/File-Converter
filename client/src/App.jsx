@@ -17,7 +17,8 @@ function Home() {
   const [status, setStatus] = useState("");
   const [is_sign_open, setIs_sign_open] = useState(false);
   const [filesize, setFilesize] = useState(0);
-
+  const [download_URL, setDownload_URL] = useState("");
+  const [download_filename, setDownload_filename] = useState(""); 
   const fileInputRef = useRef(null);
 
   const opsiformat = {
@@ -83,6 +84,8 @@ function Home() {
       return;
     }
 
+    setDownload_URL("");
+    setDownload_filename("");
     const formData = new FormData(); //untuk menyimpan file yang akan di upload
     formData.append("file", selected_file); //kirim info ke backend
     formData.append("targetFORMAT", targetFORMAT); 
@@ -120,21 +123,11 @@ function Home() {
       const blob = new Blob([fileresponse.data]);
       const blob_url = window.URL.createObjectURL(blob);
 
-      const link = document.createElement('a');
-      link.href = blob_url;
-      link.download = data.filename || namafile_afterconvert();
-      link.click();
-
-      window.URL.revokeObjectURL(blob_url);
+      setDownload_URL(blob_url);
+      setDownload_filename(data.download_filename || namafile_afterconvert());
 
       setProgress(100);
-      setStatus("Selesai!");
-
-      setTimeout(() => {
-        setIs_converting(false);
-        setProgress(0);
-        setStatus("");
-      }, 1500);
+      setStatus("Proses convert selesai, silahkan click tombol download");
 
     } catch(error){
       console.error("Terjadi error saat melakukan convert : ", error);
