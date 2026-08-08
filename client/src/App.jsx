@@ -4,8 +4,9 @@ import './index.css';
 import Signup_Popup from './components/Signup_Popup';
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
-import Signup from './Signup'
-import Login from './Login'
+import Signup from './Signup';
+import Login from './Login';
+import About from './About';
 
 function Home() {
   const [selected_file, setSelected_file] = useState(null);
@@ -152,7 +153,7 @@ function Home() {
       <nav className="w-full bg-[#808080] h-15 flex items-center p-5 justify-between">
         <h1 className="text-xl font-bold">File Converter</h1>
         <div className="flex items-center gap-12 font-bold">
-          <a href = "/about" className="text-xl font-bold">About</a>
+          <a href = "/About" className="text-xl font-bold">About</a>
           <a href = "/" className="text-xl font-bold">Convert</a>
           <a href = "/help" className="text-xl font-bold">Help</a>
         </div>
@@ -226,6 +227,7 @@ export default function App(){
       <Route path = "/" element={<Home/>}/>
       <Route path = "/signup" element= {<Signup/>}/>
       <Route path = "/login" element = {<Login/>}/>
+      <Route path = "/about" element = {<About/>}/>
     </Routes>
   );
 }
