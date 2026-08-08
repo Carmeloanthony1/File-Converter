@@ -26,7 +26,7 @@ export default function About() {
                 </div>
             </nav>
             <main className="w-full max-w-5xl px-8 my-auto flex-1 py-12 flex flex-col text-left justify-center">
-            <h1 className="text-4xl mt-6 mb-3 font-bold">
+            <h1 className="text-6xl mt-6 mb-3 font-bold">
                 What is <span className="text-blue-300">File Converter</span> ?
             </h1>
 
