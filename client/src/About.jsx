@@ -7,6 +7,9 @@ const words = ["Change", "Manage", "Convert"];
 export default function About() {
   const [index, setIndex] = useState(0);
 
+  // State untuk menyimpan nama tab yang lagi diklik
+  const [activeTab, setActiveTab] = useState("quality");
+
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % words.length);
@@ -29,9 +32,9 @@ export default function About() {
 
       {/* Main */}
       <main className="w-full mt-[60px] flex flex-col">
+        {/* Slide 1 : What is file converter*/}
         <section className="w-full min-h-[calc(100vh-60px)] flex items-center justify-center px-10 py-28 lg:py-32">
           <div className="w-full max-w-[1440px] grid grid-cols-1 md:grid-cols-12 gap-10 items-center mx-auto my-auto">
-            
             <div className="md:col-span-7 flex flex-col text-left">
               <h1 className="text-4xl lg:text-5xl mt-2 mb-4 font-bold leading-tight">
                 What is <span className="text-blue-300">File Converter?</span>
@@ -61,7 +64,6 @@ export default function About() {
               </p>
             </div>
 
-            {/* Video */}
             <div className="md:col-span-5 flex flex-col gap-4">
               <div className="bg-[#444] border-3 border-white p-4 rounded-2xl w-full h-[360px] overflow-hidden shadow-2xl flex items-center justify-center">
                 <video autoPlay loop muted playsInline className="w-full h-full object-cover rounded-lg">
@@ -70,23 +72,40 @@ export default function About() {
                 </video>
               </div>
             </div>
-
           </div>
         </section>
 
+        {/* Slide 2 - Kelebihan, buttton section */}
         <section className="w-full min-h-[calc(100vh-60px)] flex flex-col items-center justify-center px-10 py-24 border-t border-slate-700/50">
           <div className="w-full max-w-[1440px] flex flex-col justify-center items-center gap-8 mx-auto">
             <h1 className="text-white font-bold text-4xl lg:text-3xl text-center">
               Why Choose Our File Converter?
             </h1>
-            <div>
-                <button className=""><span>File Quality</span></button>
-                <button className=""><span>Security</span></button>
-                <button className=""><span>Fast Service</span></button>
+
+            <div className="flex gap-6">
+              <button 
+                onClick={() => setActiveTab("quality")}
+                className={`bg-white text-black p-3 text-xl font-bold rounded-lg w-40 cursor-pointer transition-transform duration-200 ${
+                  activeTab === "quality" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
+                }`} > File Quality
+              </button>
+
+              <button 
+                onClick={() => setActiveTab("security")}
+                className={`bg-white text-black p-3 text-xl font-bold rounded-lg w-40 cursor-pointer transition-transform duration-200 ${
+                  activeTab === "security" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
+                }`} > Security
+              </button>
+
+              <button 
+                onClick={() => setActiveTab("fast")}
+                className={`bg-white text-black p-3 text-xl font-bold rounded-lg w-40 cursor-pointer transition-transform duration-200 ${
+                  activeTab === "fast" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
+                }`} > Fast Service
+              </button>
             </div>
           </div>
         </section>
-
       </main>
     </div>
   );
