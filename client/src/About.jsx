@@ -6,10 +6,9 @@ const words = ["Change", "Manage", "Convert"];
 
 export default function About() {
   const [index, setIndex] = useState(0);
-
-  // State untuk menyimpan nama tab yang lagi diklik
+  //state nyimpan tab yang akan di buka
   const [activeTab, setActiveTab] = useState("quality");
-
+  const [slider, setSlider] = useState(50);
   useEffect(() => {
     const timer = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % words.length);
@@ -103,6 +102,49 @@ export default function About() {
                   activeTab === "fast" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
                 }`} > Fast Service
               </button>
+            </div>
+          {/* Slider Container */}
+            <div className="relative w-full max-w-2xl h-[360px] rounded-2xl overflow-hidden shadow-2xl border border-slate-600 select-none">
+            
+                <img 
+                    src="/after_photo.png" 
+                    alt="After Converted" 
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+
+                <div 
+                    className="absolute inset-0 overflow-hidden border-r-2 border-white" 
+                    style={{ width: `${slider}%` }}>
+                    <img 
+                    src="/before_photo.jpeg" 
+                    alt="Before Converted" 
+                    className="absolute top-0 left-0 w-[672px] max-w-none h-[360px] object-cover"
+                    />
+                </div>
+
+                <span className="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-md pointer-events-none z-10">
+                    Before Converted
+                </span>
+                <span className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-md pointer-events-none z-10">
+                    After Converted
+                </span>
+
+                <div 
+                    className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-10 pointer-events-none" 
+                    style={{ left: `${slider}%` }}>
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-8 h-8 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-lg font-bold text-md">
+                    ↔
+                    </div>
+                </div>
+
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    value={slider} 
+                    onChange={(e) => setSlider(e.target.value)}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+                />
             </div>
           </div>
         </section>
