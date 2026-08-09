@@ -27,7 +27,7 @@ export default function About() {
       </nav>
 
         <main className="w-full max-w-7xl px-8 my-auto flex-1 py-12 flex flex-col justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 ml-12 items-center">
 
                 <div className="md:col-span-8 flex flex-col text-left">
                 <h1 className="text-6xl mt-6 mb-3 font-bold leading-tight">
@@ -59,6 +59,11 @@ export default function About() {
                 </div>
 
                 <div className="md:col-span-4 flex flex-col gap-4">
+                    <div className="bg-[#444] p-6 border-4 border-white-900 rounded-xl w-2xl h-100">
+                        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                            <source src = "/demo_video.webm" type="video/webm"/> Browser tidak mendukung pemutaran video
+                        </video>
+                    </div>
                 </div>
 
             </div>
