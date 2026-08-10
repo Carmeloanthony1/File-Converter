@@ -26,8 +26,8 @@ export default function Help(){
         <div className="w-full max-w-2xl bg-[#444] border-2 border-slate-300 rounded 2xl p-8 text-center">
             <h2 className="text-2xl font-bold">Help Desk</h2>
             <p>Submit your issue to dev</p>
-            <form className="flex flex-col gap-4">
-                <div className="flex flex-col sm:flex-row gap-4">
+            <form className="flex flex-cols gap-4">
+                <div className="flex flex-cols sm:flex-row gap-4">
                     <div className="flex-1">
                         <label className="text-xs font-bold mb-1 block">Name</label>
                         <input 
@@ -52,6 +52,15 @@ export default function Help(){
                             <option value = "Quality loss">Quality loss</option>
                             <option value = "Bug/Suggestion">Bug/Suggestion</option>
                         </select>
+                    </div>
+                    <div>
+                        <label className="text-xs font-bold mb-1 block">Description</label>
+                        <textarea 
+                            row="4" required placeholder="Tuliskan kendala yang anda alami"
+                            value={formdata.message} onChange={(e) => setFormdata({ ...formdata, message: e.target.value})} 
+                            className="w-full bg-[#333] border border-slate-400 rounded-lg p-3 text-sm focus:outline-none">
+
+                        </textarea>
                     </div>
                 </div>
             </form>
