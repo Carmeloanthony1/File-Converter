@@ -7,7 +7,7 @@ import axios from "axios";
 import Signup from './Signup';
 import Login from './Login';
 import About from './About';
-
+import Help from './Help';
 function Home() {
   const [selected_file, setSelected_file] = useState(null);
   const [realFORMAT, setRealFORMAT] = useState("");
@@ -228,6 +228,7 @@ export default function App(){
       <Route path = "/signup" element= {<Signup/>}/>
       <Route path = "/login" element = {<Login/>}/>
       <Route path = "/about" element = {<About/>}/>
+      <Route path = "/help" element = {<Help/>}/>
     </Routes>
   );
 }
