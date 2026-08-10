@@ -236,10 +236,23 @@ export default function About() {
                     </motion.div>
                 )}
                 {activeTab === "fast" && (
-                  
+                    <motion.div key = "fast" initial= {{ opacity: 0, y: 15}}
+                          animate = {{ opacity: 1, y: 0}} exit={{ opacity: 0, y:-15 }}
+                          transition={{ duration: 0.25 }} className="w-full bg-[#444] border-2 border-slate-300 rounded-lg p-8 sm:p-10 text-center shadow-2xl flex flex-col items-center justify-center min-h-[360px]">
+                      <h2 className="font-bold text-2xl">Our Service is Incredibly Fast</h2>
+                      <p className="text-lg">it take only 12 second to convert your file format into your target format</p>
+                      
+                      {/* Container Video Utama */}
+                      <div className="bg-[#1a1a1a] w-full max-w-2xl rounded-2xl mt-5 border-[3px] border-white overflow-hidden shadow-xl aspect-video flex items-center justify-center">
+                        <video autoPlay loop muted playsInline className="w-full h-full object-contain">
+                          <source src="/Fast_testing.webm" type="video/webm"/> 
+                          Browser tidak memumpuni untuk memutar video
+                        </video>
+                      </div>
+                    </motion.div>
                 )}
                 </AnimatePresence>
-            </div>
+            </div>  
           </div>
         </section>
       </main>
