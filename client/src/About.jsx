@@ -235,6 +235,9 @@ export default function About() {
                         </div>
                     </motion.div>
                 )}
+                {activeTab === "fast" && (
+                  
+                )}
                 </AnimatePresence>
             </div>
           </div>
