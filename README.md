@@ -40,12 +40,15 @@ This project contain some page such as
 
 # Conversion Process
 # Select/upload files 
+Choose your original file
 <img width="1600" height="877" alt="WhatsApp Image 2026-08-11 at 08 06 07" src="https://github.com/user-attachments/assets/3ba2bd95-69db-4752-9fb3-9afca0ccd9aa" />
 
 # Choose Target Format
+Choose your target format
 <img width="1600" height="878" alt="image" src="https://github.com/user-attachments/assets/bd205c8f-f579-47d5-8252-08f885550c6a" />
 
 # Process & Download 
+Wait the process and click download
 <img width="1922" height="1055" alt="image" src="https://github.com/user-attachments/assets/c8ae8b03-b1a1-4f21-b0c2-ac4c124f59fa" />
 
 
