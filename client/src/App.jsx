@@ -8,6 +8,8 @@ import Signup from './Signup';
 import Login from './Login';
 import About from './About';
 import Help from './Help';
+import Footer from './components/Footer';
+
 function Home() {
   const [selected_file, setSelected_file] = useState(null);
   const [realFORMAT, setRealFORMAT] = useState("");
@@ -223,12 +225,18 @@ function Home() {
 
 export default function App(){
   return(
-    <Routes>
-      <Route path = "/" element={<Home/>}/>
-      <Route path = "/signup" element= {<Signup/>}/>
-      <Route path = "/login" element = {<Login/>}/>
-      <Route path = "/about" element = {<About/>}/>
-      <Route path = "/help" element = {<Help/>}/>
-    </Routes>
+      <div className="min-h-screen bg-[#333] text-slate-100 flex flex-col justify-between">
+        <div className="flex-1 flex flex-col">
+          <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/signup" element={<Signup/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/about" element={<About/>}/>
+            <Route path="/help" element={<Help/>}/>
+          </Routes>
+        </div>
+
+        <Footer/>
+      </div>
   );
 }
