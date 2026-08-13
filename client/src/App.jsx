@@ -157,7 +157,7 @@ function Home() {
 
       <div className = "w-full max-w-6xl mx-auto px-4 flex flex-col items-center overflow-x-hidden">
         <h1 className = "mt-12 text-4xl font-bold">Convert Your File</h1>
-        <h3 className = "mt-4 text-xl tracking-wide">MENGUBAH TIPE FILE MU DENGAN{" "}   
+        <h3 className = "mt-4 text-xl tracking-wide text-center">MENGUBAH TIPE FILE MU DENGAN{" "}   
            <a className = "underline decoration-red-300 decoration-2">MUDAH!</a>
         </h3>
 

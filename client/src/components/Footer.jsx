@@ -43,10 +43,10 @@ export default function Footer(){
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-neutral-700/60">
                     {footer_section.map((section, idx) => (
                         <div key={idx} className="flex flex-col gap-3">
-                            <h3 className="text-white font-bold text-base tracking-wide border-b border-neutral-700/40 pb-2">
+                            <h3 className="text-white font-bold text-base text-center tracking-wide border-b border-neutral-700/40 pb-2">
                                 {section.title}
                             </h3>
-                            <ul className="flex flex-col gap-2">
+                            <ul className="flex flex-col text-center gap-2">
                                 {section.links.map((link, lIdx) => (
                                     <li key={lIdx}>
                                         <Link to={link.to} className="text-neutral-400 hover:text-white transition-colors block text-sm">
