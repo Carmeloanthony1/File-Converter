@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Navbar from "./components/Navbar";
 
 export default function Help(){
     const Dev_email = "meloproacc@gmail.com";
@@ -35,16 +36,9 @@ export default function Help(){
     };
 
     return (
-    <div className="min-h-screen bg-[#333] text-slate-100 flex flex-col overflow-y-auto">
+    <div className="min-h-screen bg-[#333] text-white">
       {/* Navbar */}
-      <nav className="w-full bg-[#808080] h-[60px] flex items-center p-5 justify-between fixed top-0 left-0 z-50">
-        <h1 className="text-xl font-bold">File Converter</h1>
-        <div className="flex items-center gap-12 font-bold">
-          <Link to="/about" className="text-xl font-bold">About</Link>
-          <Link to="/" className="text-xl font-bold">Convert</Link>
-          <Link to="/help" className="text-xl font-bold">Help</Link>
-        </div>
-      </nav>
+      <Navbar/>
 
       {/* Main Content */}
       <main className="w-full mt-[60px] flex-1 flex justify-center items-center p-6 sm:p-10">

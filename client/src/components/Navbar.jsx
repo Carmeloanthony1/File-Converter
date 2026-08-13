@@ -17,19 +17,19 @@ const Navbar = () => {
                     </svg>
                 </button>
                 {/* Buat desktop navbarnya*/}
-                <div className="hidden md:flex items-center text-white space-x-6 font-medium text-sm">
+                <div className="hidden md:flex items-center text-white space-x-6 font-medium text-xl">
                     <Link to="/" className='hover:text-blue-300 transition'>About</Link>
                     <Link to="/convert" className='hover:text-blue-300 transition'>Convert</Link>
                     <Link to="/help" className='hover:text-blue-300 transition'>Help</Link>
                 </div>
             </div>
             {isOpen && ( //biar nanti pas di pencet menunya, dia ga nutupin
-                <div className="md:hidden bg-[#808080] px-4 pt-2 pb-4 space-y-2">
-                    <Link to = "/" 
+                <div className="md:hidden bg-[#808080] px-4 pt-2 pb-4 space-y-2 animate-in fade-in slide-in-from-top-2 duration-200 ease-out">
+                    <Link to = "/about" 
                         onClick={() => setIsOpen(false)}
                         className="block py-2 text-white hover:text-blue-300 font-medium"
                     >About</Link>
-                    <Link to = "/convert" 
+                    <Link to = "/" 
                         onClick={() => setIsOpen(false)}
                         className="block py-2 text-white hover:text-blue-300 font-medium"
                     >Convert</Link>
