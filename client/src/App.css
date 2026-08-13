@@ -1,2 +1,2 @@
-@import "tailwindcss"
-@import "tailwindcss-animate";
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
