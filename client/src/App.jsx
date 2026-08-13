@@ -9,6 +9,7 @@ import Login from './Login';
 import About from './About';
 import Help from './Help';
 import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
 function Home() {
   const [selected_file, setSelected_file] = useState(null);
@@ -151,15 +152,8 @@ function Home() {
   }
   
   return (
-    <div className= "min-h-screen bg-[#333] text-slate-100 flex flex-col items-center">
-      <nav className="w-full bg-[#808080] h-15 flex items-center p-5 justify-between">
-        <h1 className="text-xl font-bold">File Converter</h1>
-        <div className="flex items-center gap-12 font-bold">
-          <a href = "/About" className="text-xl font-bold">About</a>
-          <a href = "/" className="text-xl font-bold">Convert</a>
-          <a href = "/help" className="text-xl font-bold">Help</a>
-        </div>
-      </nav>
+    <div className= "min-h-screen bg-[#333] text-white">
+        <Navbar/>
 
       <div className = "min-h-screen w-6xl bg-[#333] flex flex-col items-center ">
         <h1 className = "mt-12 text-4xl font-bold">Convert Your File</h1>
