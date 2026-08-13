@@ -5,7 +5,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <nav className="bg-[#333] text-white sticky top-0 z-50">
-            <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
                 <Link to="/" className="text-xl font-bold tracking-wide text-white"> File 
                     <span className="text-blue-300">Converter</span>
                 </Link>
@@ -17,10 +17,14 @@ const Navbar = () => {
                     </svg>
                 </button>
                 {/* Buat desktop navbarnya*/}
-                <div className="hidden md:flex items-center text-white space-x-6 font-medium text-xl">
+                <div className="hidden md:flex items-center text-white space-x-6 font-medium text-xl absolute left-1/2 -translate-x-1/2">
                     <Link to="/" className='hover:text-blue-300 transition'>About</Link>
                     <Link to="/convert" className='hover:text-blue-300 transition'>Convert</Link>
                     <Link to="/help" className='hover:text-blue-300 transition'>Help</Link>
+                </div>
+                <div className="hidden md:flex items-center space-x-4 z-10 text-xl font-medium">
+                    <button className="cursor-pointer hover:text-blue-300">Login</button>
+                    <button className="border-2 border-white p-2 rounded-lg bg-transparent text-white cursor-pointer hover:bg-white hover:text-[#333]">Sign up</button>
                 </div>
             </div>
             {isOpen && ( //biar nanti pas di pencet menunya, dia ga nutupin
