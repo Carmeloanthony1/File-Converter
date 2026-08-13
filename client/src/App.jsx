@@ -155,13 +155,13 @@ function Home() {
     <div className= "min-h-screen bg-[#333] text-white">
         <Navbar/>
 
-      <div className = "min-h-screen w-6xl bg-[#333] flex flex-col items-center ">
+      <div className = "w-full max-w-6xl mx-auto px-4 flex flex-col items-center overflow-x-hidden">
         <h1 className = "mt-12 text-4xl font-bold">Convert Your File</h1>
         <h3 className = "mt-4 text-xl tracking-wide">MENGUBAH TIPE FILE MU DENGAN{" "}   
            <a className = "underline decoration-red-300 decoration-2">MUDAH!</a>
         </h3>
 
-        <div className = "mt-12 w-xl min-h-[360px] py-8 px-6 bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-7">
+        <div className = "mt-8 w-full max-w-lg min-h-[360px] py-8 px-4 md: bg-[#444] p-2 border-3 rounded-lg flex flex-col justify-center items-center gap-6 shadow-lg">
           <input type = "file" ref = {fileInputRef} onChange={handleFILE} className="hidden"/>
           <button 
             className = "bg-[#808080] p-2 font-bold rounded-lg w-64 h-16 flex flex-row items-center justify-center gap-2 cursor-pointer"
@@ -219,7 +219,8 @@ function Home() {
 
 export default function App(){
   return(
-      <div className="min-h-screen bg-[#333] text-slate-100 flex flex-col justify-between">
+      <div className="min-h-screen bg-[#333] text-slate-100 flex flex-col justify-between overflow-x-hidden">
+        {/*Tambah overflow-x-hidden biar lebih aman*/}
         <div className="flex-1 flex flex-col">
           <Routes>
             <Route path="/" element={<Home/>}/>
