@@ -176,74 +176,87 @@ export default function About() {
                   </motion.div>
                 )}
                 {activeTab === "security" && (
-                    <motion.div key = "security" initial= {{ opacity: 0, y: 15}}
-                        animate = {{ opacity: 1, y: 0}} exit={{ opacity: 0, y:-15 }}
-                        transition={{ duration: 0.25 }} className="w-full bg-[#444] border-2 border-slate-300 rounded-2xl p-10 text-center shadow-2xl flex flex-col items-center justify-center min-h-[#360px]">
-                        <h2 className="text-2xl font-bold mb-2">Your File Safe and Private</h2>
-                        <p className="text-slate-100 text-lg max-w-xl leading-relaxed mb-6">
-                            We prioritize your privacy above all else. Your data is encrypted and our only focus is helping you convert your files with ease.
-                        </p>
-                      
-                        <h3 className="text-xl font-bold text-blue-300">Behind the system</h3>
-                        <div className="flex flex-row items-center justify-between gap-2 mt-8 w-full max-w-3xl mx-auto px-2">
-                            <button onClick={() => setActivestep("input")} 
-                                className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 
-                                ${activestep === "input" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : 
-                                "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105" }`} >Input file
-                            </button>
+                  <motion.div key = "security" initial= {{ opacity: 0, y: 15}}
+                    animate = {{ opacity: 1, y: 0}} exit={{ opacity: 0, y:-15 }}
+                    transition={{ duration: 0.25 }} className="w-full bg-[#444] border-2 border-slate-300 rounded-2xl p-10 text-center shadow-2xl flex flex-col items-center justify-center min-h-[#360px]">
+                    <h2 className="text-2xl font-bold mb-2">Your File Safe and Private</h2>
+                    <p className="text-slate-100 text-lg max-w-xl leading-relaxed mb-6">
+                        We prioritize your privacy above all else. Your data is encrypted and our only focus is helping you convert your files with ease.
+                    </p>
+                    
+                    <h3 className="text-xl font-bold text-blue-300">Behind the system</h3>
+                    <div className="w-full max-w-xs sm:hidden">
+                      <select 
+                        value ={activestep} onChange={(e) => setActivestep(e.target.value)}
+                        className="w-full max-w-[200px] bg-[#333] text-white font-semibold py-3 px-4 rounded-xl border-2 border-blue-300/50 shadow-[0_0_15px_rgba(56,189,248,0.3)]
+                        outline-none cursor-pointer text-sm text-center appeareance-none mt-4">
+                        <option value= "input" className="bg-[#333] text-white">1. Input File</option>
+                        <option value= "encrypt" className="bg-[#333] text-white">2. Encrypt File</option>
+                        <option value= "convert" className="bg-[#333] text-white">3. Converting Process</option>
+                        <option value= "delete" className="bg-[#333] text-white">4. Automatic Delete</option>
+                      </select>
+                    </div>
+                    <div className="hidden sm:flex flex-row items-center justify-between gap-2 mt-4 w-full max-w-3xl mx-auto px-2">
+                      <button 
+                        onClick={() => setActivestep("input")} 
+                        className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 ${
+                          activestep === "input" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105"
+                        }`}
+                      > Input file
+                      </button>
 
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                viewBox="0 0 640 640" 
-                                className="w-5 h-5 sm:w-6 sm:h-6 fill-white drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] shrink-0">
-                                <path d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z"/>
-                            </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" className="w-5 h-5 sm:w-6 sm:h-6 fill-white drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] shrink-0">
+                        <path d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z"/>
+                      </svg>
 
-                            <button onClick={() => setActivestep("encrypt")} 
-                                className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 
-                                ${activestep === "encrypt" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : 
-                                "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105" }`} >Encrypt
-                            </button>
+                      <button 
+                        onClick={() => setActivestep("encrypt")} 
+                        className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 ${
+                          activestep === "encrypt" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105"
+                        }`}
+                      > Encrypt
+                      </button>
 
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                viewBox="0 0 640 640" 
-                                className="w-5 h-5 sm:w-6 sm:h-6 fill-white drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] shrink-0">
-                                <path d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z"/>
-                            </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" className="w-5 h-5 sm:w-6 sm:h-6 fill-white drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] shrink-0">
+                        <path d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z"/>
+                      </svg>
 
-                            <button onClick={() => setActivestep("convert")} 
-                                className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 
-                                ${activestep === "convert" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : 
-                                "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105" }`} >Convert
-                            </button>
+                      <button 
+                        onClick={() => setActivestep("convert")} 
+                        className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 ${
+                          activestep === "convert" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105"
+                        }`}
+                      > Convert
+                      </button>
 
-                            <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                viewBox="0 0 640 640" 
-                                className="w-5 h-5 sm:w-6 sm:h-6 fill-white drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] shrink-0">
-                                <path d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z"/>
-                            </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" className="w-5 h-5 sm:w-6 sm:h-6 fill-white drop-shadow-[0_0_8px_rgba(56,189,248,0.6)] shrink-0">
+                        <path d="M598.6 342.6C611.1 330.1 611.1 309.8 598.6 297.3L470.6 169.3C458.1 156.8 437.8 156.8 425.3 169.3C412.8 181.8 412.8 202.1 425.3 214.6L498.7 288L64 288C46.3 288 32 302.3 32 320C32 337.7 46.3 352 64 352L498.7 352L425.3 425.4C412.8 437.9 412.8 458.2 425.3 470.7C437.8 483.2 458.1 483.2 470.6 470.7L598.6 342.7z"/>
+                      </svg>
 
-                            <button onClick={() => setActivestep("delete")} 
-                                className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 
-                                ${activestep === "delete" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : 
-                                "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105" }`} >Auto Delete
-                            </button>
-                        </div>
-                        <div className="mt-6 min-h-[50px] flex items-center justify-center">
-                            <AnimatePresence mode="wait">
-                                <motion.p
-                                    key={activestep} initial={{ opacity: 0, y: 8 }}
-                                    animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="text-white text-sm sm:text-base font-medium text-center bg-transparent backdrop-blur-sm px-6 py-2.5 rounded-xl border-2 border-blue-200/60">
-                                
-                                {step_desc[activestep]}
-                                </motion.p>
-                            </AnimatePresence>
-                        </div>
-                    </motion.div>
+                      <button 
+                        onClick={() => setActivestep("delete")} 
+                        className={`bg-transparent backdrop-blur-md text-white font-semibold w-28 sm:w-32 h-11 rounded-xl flex items-center justify-center text-xs sm:text-sm border-2 border-blue-300/80 shadow-[0_0_15px_rgba(56,189,248,0.3)] shrink-0 cursor-pointer transition-all duration-200 ${
+                          activestep === "delete" ? "border-blue-300 shadow-[0_0_20px_rgba(56,189,248,0.7)] scale-105" : "border-blue-300/40 opacity-70 hover:opacity-100 hover:scale-105"
+                        }`}
+                      > Auto Delete
+                      </button>
+                    </div>
+
+                    <div className="mt-6 min-h-[50px] flex items-center justify-center">
+                      <AnimatePresence mode="wait">
+                        <motion.p
+                          key={activestep} 
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }} 
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-white text-xs sm:text-base font-medium text-center bg-transparent backdrop-blur-sm px-4 sm:px-6 py-2.5 rounded-xl border-2 border-blue-200/60 max-w-lg"
+                        >
+                          {step_desc[activestep]}
+                        </motion.p>
+                      </AnimatePresence>
+                    </div>
+                  </motion.div>
                 )}
                 {activeTab === "fast" && (
                     <motion.div key = "fast" initial= {{ opacity: 0, y: 15}}
