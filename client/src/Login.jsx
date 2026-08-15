@@ -68,7 +68,7 @@ export default function Login(){
                         onChange={handle_input} className="p-3 w-80 bg-[#F0EFE7]/30 rounded-lg border-white border-2 text-white text-lg">
                     </input>
                     <button type = "submit" disabled = {loading} className= "mt-4 p-3 w-30 rounded-lg border-white-400 border-2 bg-[#808080]">{loading ? 'Mohon menunggu' : 'SIGN UP'}</button>
-                    <p className='text-md'>belum punya akun? <a href = "/signup" className="text-white cursor-pointer hover:text-blue-400">sign up</a></p>
+                    <p className='text-md'>Belum punya akun? <a href = "/signup" className="text-white cursor-pointer hover:text-blue-400">sign up</a></p>
                 </form>
             </div>
         </div>

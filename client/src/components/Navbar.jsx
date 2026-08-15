@@ -23,8 +23,8 @@ const Navbar = () => {
                     <Link to="/help" className='hover:text-blue-300 transition'>Help</Link>
                 </div>
                 <div className="hidden md:flex items-center space-x-4 z-10 text-xl font-medium">
-                    <button className="cursor-pointer hover:text-blue-300">Login</button>
-                    <button className="border-2 border-white p-2 rounded-lg bg-transparent text-white cursor-pointer hover:bg-white hover:text-[#333]">Sign up</button>
+                    <Link to="/login"className="cursor-pointer hover:text-blue-300">Login</Link>
+                    <Link to="/signup"className="border-2 border-white p-2 rounded-lg bg-transparent text-white cursor-pointer hover:bg-white hover:text-[#333]">Sign up</Link>
                 </div>
             </div>
             {isOpen && ( //biar nanti pas di pencet menunya, dia ga nutupin
@@ -41,6 +41,14 @@ const Navbar = () => {
                         onClick={() => setIsOpen(false)}
                         className="block py-2 text-white hover:text-blue-300 font-medium"
                     >Help</Link>
+                    <Link to = "signup" 
+                        onClick={() => setIsOpen(false)}
+                        className="block py-2 text-white hover:text-blue-300 font-medium"
+                    >Signup</Link>
+                    <Link to = "/login" 
+                        onClick={() => setIsOpen(false)}
+                        className="block py-2 text-white hover:text-blue-300 font-medium"
+                    >Login</Link>
                 </div>
             )}
         </nav>
