@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect, act } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const words = ["Change", "Manage", "Convert"];
 
 export default function About() {
   const [index, setIndex] = useState(0);
-  //state nyimpan tab yang akan di buka
+  // state nyimpan tab yang akan dibuka
   const [activeTab, setActiveTab] = useState("quality");
   const [slider, setSlider] = useState(50);
 
@@ -32,29 +32,36 @@ export default function About() {
       {/* Main */}
       <main className="w-full mt-[60px] flex flex-col">
         {/* Slide 1 : What is file converter*/}
-        <section className="w-full min-h-[calc(100vh-60px)] flex items-center justify-center px-10 py-28 lg:py-32">
+        <section className="w-full min-h-[calc(100vh-60px)] flex items-center justify-center px-6 lg:px-10 py-20 lg:py-32">
           <div className="w-full max-w-[1440px] grid grid-cols-1 md:grid-cols-12 gap-10 items-center mx-auto my-auto">
-            <div className="md:col-span-7 flex flex-col text-left">
-              <h1 className="text-4xl lg:text-5xl mt-2 mb-4 font-bold leading-tight">
-                What is <span className="text-blue-300">File Converter?</span>
+            
+            {/* Left Content Container */}
+            <div className="md:col-span-7 flex flex-col text-center md:text-left items-center md:items-start">
+              <h1 className="text-4xl lg:text-5xl mt-2 mb-6 font-bold leading-tight">
+                What is <span className="text-blue-300">FileConverter?</span>
               </h1>
 
-              <div className="text-2xl lg:text-3xl leading-relaxed flex flex-wrap items-baseline gap-x-2">
-                <span>An easy to use web application that allows you to</span>
-                <span className="inline-grid grid-cols-1 grid-rows-1 overflow-hidden h-[1.3em] w-[3.8em] align-baseline">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[index]}
-                      initial={{ y: "100%", opacity: 0 }}
-                      animate={{ y: "0%", opacity: 1 }}
-                      exit={{ y: "-100%", opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="col-start-1 row-start-1 font-bold text-blue-300"
-                    >
-                      {words[index]}
-                    </motion.span>
-                  </AnimatePresence>
+              <div className="text-2xl lg:text-3xl leading-relaxed flex flex-wrap items-baseline justify-center md:justify-start gap-x-2">
+                <span>An easy to use web application that allows</span>
+                
+                <span className="inline-flex items-baseline gap-x-2 whitespace-nowrap">
+                  <span>you to</span>
+                  <span className="inline-grid grid-cols-1 grid-rows-1 overflow-hidden h-[1.3em] min-w-[3.8em] align-baseline">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={words[index]}
+                        initial={{ y: "100%", opacity: 0 }}
+                        animate={{ y: "0%", opacity: 1 }}
+                        exit={{ y: "-100%", opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="col-start-1 row-start-1 font-bold text-blue-300"
+                      >
+                        {words[index]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
                 </span>
+
                 <span>your file effortlessly</span>
               </div>
 
@@ -63,6 +70,7 @@ export default function About() {
               </p>
             </div>
 
+            {/* Right Video Container */}
             <div className="md:col-span-5 flex flex-col gap-4">
               <div className="bg-[#444] border-3 border-white p-4 rounded-2xl w-full h-[360px] overflow-hidden shadow-2xl flex items-center justify-center">
                 <video autoPlay loop muted playsInline className="w-full h-full object-cover rounded-lg">
@@ -71,10 +79,11 @@ export default function About() {
                 </video>
               </div>
             </div>
+
           </div>
         </section>
 
-        {/* Slide 2 - Kelebihan, buttton section */}
+        {/* Slide 2 - Kelebihan, button section */}
         <section className="w-full min-h-[calc(100vh-60px)] flex flex-col items-center justify-center px-10 py-24 border-t border-slate-700/50">
           <div className="w-full max-w-[1440px] flex flex-col justify-center items-center gap-8 mx-auto">
             <h1 className="text-white font-bold text-4xl lg:text-3xl text-center">
@@ -103,7 +112,7 @@ export default function About() {
               </button>
             </div>
 
-          {/* Slider Container */}
+            {/* Slider Container */}
             <div className="w-full max-w-4xl min-h-[#420px] flex items-center justify-center">
                 <AnimatePresence mode="wait">
                     {activeTab === "quality" && ( 
@@ -111,7 +120,7 @@ export default function About() {
                         key="quality" initial= {{ opacity: 0, y: 15}}
                         animate = {{ opacity: 1, y: 0}} exit={{ opacity: 0, y:-15 }}
                         transition={{ duration: 0.25 }} className="w-full flex flex-col items-center">
-                                    {/* Deskripsi */}
+                        {/* Deskripsi */}
                         <p className="text-xl font-bold mb-3">Even after conversion, your file quality stays as crisp as the original</p>
                         <div className="relative w-full max-w-2xl h-[360px] rounded-2xl overflow-hidden shadow-2xl border border-slate-600 select-none">
                             <img 
