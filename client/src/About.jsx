@@ -92,83 +92,88 @@ export default function About() {
 
         <section className="w-full min-h-[calc(100vh-60px)] flex flex-col items-center justify-center px-10 py-24 border-t border-slate-700/50">
           <div className="w-full max-w-[1440px] flex flex-col justify-center items-center gap-8 mx-auto">
-            <h1 className="text-white font-bold text-4xl lg:text-3xl text-center">
+            <h1 className="text-white font-bold text-xl lg:text-2xl font-bold text-center">
               Why Choose Our File Converter?
             </h1>
-            <div className="flex gap-6">
+            <div className="flex gap-2 sm:gap-4 md:gap-6 w-full max-w-xl justify-center">
               <button 
                 onClick={() => setActiveTab("quality")}
-                className={`bg-white text-black p-3 text-xl font-bold rounded-lg w-40 cursor-pointer transition-transform duration-200 ${
+                className={`bg-white text-black py-3 px-2 sm:p-3 text-xs sm:text-base md:text-xl font-bold rounded-lg w-full cursor-pointer transition-transform duration-200 ${
                   activeTab === "quality" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
                 }`} > File Quality
               </button>
 
               <button 
                 onClick={() => setActiveTab("security")}
-                className={`bg-white text-black p-3 text-xl font-bold rounded-lg w-40 cursor-pointer transition-transform duration-200 ${
+                className={`bg-white text-black py-3 px-2 sm:p-3 text-xs sm:text-base md:text-xl font-bold rounded-lg w-full cursor-pointer transition-transform duration-200 ${
                   activeTab === "security" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
                 }`} > Security
               </button>
 
               <button 
                 onClick={() => setActiveTab("fast")}
-                className={`bg-white text-black p-3 text-xl font-bold rounded-lg w-40 cursor-pointer transition-transform duration-200 ${
+                className={`bg-white text-black py-3 px-2 sm:p-3  text-xs sm:text-base md:text-xl font-bold rounded-lg w-full cursor-pointer transition-transform duration-200 ${
                   activeTab === "fast" ? "scale-105 shadow-[0_0_30px_rgba(56,189,248,0.8)]" : "opacity-80 hover:opacity-100"
                 }`} > Fast Service
               </button>
             </div>
 
-            <div className="w-full max-w-4xl min-h-[#420px] flex items-center justify-center">
+            <div className="w-full max-w-4xl min-h-[#360px] flex items-center justify-center">
                 <AnimatePresence mode="wait">
-                    {activeTab === "quality" && ( 
-                    <motion.div 
-                        key="quality" initial= {{ opacity: 0, y: 15}}
-                        animate = {{ opacity: 1, y: 0}} exit={{ opacity: 0, y:-15 }}
-                        transition={{ duration: 0.25 }} className="w-full flex flex-col items-center">
-                        {/* Deskripsi */}
-                        <p className="text-xl font-bold mb-3">Even after conversion, your file quality stays as crisp as the original</p>
-                        <div className="relative w-full max-w-2xl h-[360px] rounded-2xl overflow-hidden shadow-2xl border border-slate-600 select-none">
-                            <img 
-                                src="/after_photo.png" 
-                                alt="After Converted" 
-                                className="absolute inset-0 w-full h-full object-cover"
-                            />
+                {activeTab === "quality" && ( 
+                  <motion.div 
+                    key="quality" 
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }} 
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.25 }} 
+                    className="w-full flex flex-col items-center"
+                  >
+                    <p className="text-sm sm:text-xl font-bold mb-4 text-center px-2">
+                      Even after conversion, your file quality stays as crisp as the original
+                    </p>
 
-                            <div 
-                                className="absolute inset-0 overflow-hidden border-r-2 border-white" 
-                                style={{ width: `${slider}%` }}>
-                                <img 
-                                src="/before_photo.jpeg" 
-                                alt="Before Converted" 
-                                className="absolute top-0 left-0 w-[672px] max-w-none h-[360px] object-cover"
-                                />
-                            </div>
+                    <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-600 select-none">
+                      
+                      <img 
+                        src="/after_photo.png" 
+                        alt="After Converted" 
+                        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                      />
+                    
+                        <img 
+                          src="/before_photo.jpeg" 
+                          alt="Before Converted" 
+                          className="absolute top-0 left-0 max-w-none h-full object-cover"
+                          style={{ width: "100%", height: "100%", minWidth: "100%" }}
+                        />
 
-                            <span className="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-md pointer-events-none z-10">
-                                Before Converted
-                            </span>
-                            <span className="absolute bottom-4 right-4 bg-black/60 text-white text-xs px-3 py-1 rounded-full backdrop-blur-md pointer-events-none z-10">
-                                After Converted
-                            </span>
+                      <span className="absolute bottom-3 left-3 bg-black/60 text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-full backdrop-blur-md pointer-events-none z-10">
+                        Before Converted
+                      </span>
+                      <span className="absolute bottom-3 right-3 bg-black/60 text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-full backdrop-blur-md pointer-events-none z-10">
+                        After Converted
+                      </span>
 
-                            <div 
-                                className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize z-10 pointer-events-none" 
-                                style={{ left: `${slider}%` }}>
-                                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-8 h-8 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-lg font-bold text-md">
-                                ↔
-                                </div>
-                            </div>
-
-                            <input 
-                                type="range" 
-                                min="0" 
-                                max="100" 
-                                value={slider} 
-                                onChange={(e) => setSlider(e.target.value)}
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
-                            />
+                      <div 
+                        className="absolute top-0 bottom-0 w-0.5 bg-white  z-10 pointer-events-none" 
+                        style={{ left: `${slider}%` }}
+                      >
+                        <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 left-1/2 w-6 h-6 sm:w-8 sm:h-8 bg-white text-slate-900 rounded-full flex items-center justify-center shadow-lg font-bold text-xs sm:text-base">
+                          ↔
                         </div>
-                    </motion.div>
+                      </div>
+
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max="100" 
+                        value={slider} 
+                        onChange={(e) => setSlider(e.target.value)}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+                      />
+                    </div>
+                  </motion.div>
                 )}
                 {activeTab === "security" && (
                     <motion.div key = "security" initial= {{ opacity: 0, y: 15}}
