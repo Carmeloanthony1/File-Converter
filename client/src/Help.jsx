@@ -38,8 +38,6 @@ export default function Help(){
     return (
     <div className="min-h-screen bg-[#333] text-white">
       {/* Navbar */}
-      <Navbar/>
-
       {/* Main Content */}
       <main className="w-full mt-[60px] flex-1 flex justify-center items-center p-6 sm:p-10">
         <div className="w-full max-w-4xl bg-[#444] border-2 border-slate-300 rounded-2xl p-10 text-center shadow-2xl my-auto">

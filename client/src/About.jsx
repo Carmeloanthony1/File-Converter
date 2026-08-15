@@ -29,8 +29,6 @@ export default function About() {
   return (
     <div className="min-h-screen bg-[#333] text-white">
       {/* Navbar */}
-        <Navbar/>
-
       {/* Main */}
       <main className="w-full mt-[60px] flex flex-col">
         {/* Slide 1 : What is file converter*/}

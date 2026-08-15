@@ -153,7 +153,6 @@ function Home() {
   
   return (
     <div className= "min-h-screen bg-[#333] text-white">
-        <Navbar/>
 
       <div className = "w-full max-w-6xl mx-auto px-4 flex flex-col items-center overflow-x-hidden">
         <h1 className = "mt-12 text-4xl font-bold">Convert Your File</h1>
@@ -221,9 +220,11 @@ export default function App(){
   return(
       <div className="min-h-screen bg-[#333] text-slate-100 flex flex-col justify-between overflow-x-hidden">
         {/*Tambah overflow-x-hidden biar lebih aman*/}
+        <Navbar/>
         <div className="flex-1 flex flex-col">
           <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path="/convert" element ={<Home/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/about" element={<About/>}/>
