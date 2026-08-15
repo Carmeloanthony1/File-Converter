@@ -43,7 +43,6 @@ export default function About() {
         <section className="w-full min-h-[calc(100vh-60px)] flex items-center justify-center px-6 lg:px-10 py-20 lg:py-32">
           <div className="w-full max-w-[1440px] grid grid-cols-1 md:grid-cols-12 gap-10 items-center mx-auto my-auto">
             
-            {/* Left Content Container */}
             <div className="md:col-span-7 flex flex-col text-center md:text-left items-center md:items-start">
               <h1 className="text-4xl lg:text-5xl mt-2 mb-6 font-bold leading-tight">
                 What is <span className="text-blue-300">FileConverter?</span>
@@ -267,7 +266,7 @@ export default function About() {
                       
                       {/* Container Video Utama */}
                       <div className="bg-[#1a1a1a] w-full max-w-2xl rounded-2xl mt-5 border-[3px] border-white overflow-hidden shadow-xl aspect-video flex items-center justify-center">
-                        <video autoPlay loop muted playsInline className="w-full h-full object-contain">
+                        <video ref = {videoref} autoPlay loop muted playsInline preload = "auto" className="w-full h-full object-contain">
                           <source src="/Fast_testing.webm" type="video/webm"/> 
                           <source src="/Fast_testing.mp4" type="video/webm"/> 
 
