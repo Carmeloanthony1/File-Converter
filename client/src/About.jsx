@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const words = ["Change", "Manage", "Convert"];
@@ -11,6 +11,7 @@ export default function About() {
   const [slider, setSlider] = useState(50);
 
   const [activestep, setActivestep] = useState("input");
+  const videoref = useRef(null);
   const step_desc = {
     input: "Users upload their files safely into our system",
     encrypt: "Your file is encrypted end-to-end using AES-256 before processing",
@@ -19,6 +20,13 @@ export default function About() {
   };
 
   useEffect(() => {
+    if(videoref.current){
+      videoref.current.defaultMuted = true;
+      videoref.current.muted = true;
+      videoref.current.play().catch((error) => {
+        console.log("Autoplay failed", error);
+      });
+    }
     const timer = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, 2000);
@@ -70,10 +78,9 @@ export default function About() {
               </p>
             </div>
 
-            {/* Right Video Container */}
-            <div className="md:col-span-5 flex flex-col gap-4">
-              <div className="bg-[#444] border-3 border-white p-4 rounded-2xl w-full h-[360px] overflow-hidden shadow-2xl flex items-center justify-center">
-                <video autoPlay loop muted playsInline className="w-full h-full object-cover rounded-lg">
+            <div className="md:col-span-5 flex flex-col items-center justify-center w-full">
+              <div className="bg-[#444] border-3 border-white p-2 sm:p-4 rounded-2xl w-full max-h-[500px] aspect-video overflow-hidden shadow-2xl flex items-center justify-center">
+                <video ref = {videoref} autoPlay loop muted playsInline preload = "auto" className="w-full h-full object-cover rounded-lg pointer-events-none">
                   <source src="/demo_video.webm" type="video/webm" /> 
                   Browser tidak mendukung pemutaran video
                 </video>
@@ -83,7 +90,6 @@ export default function About() {
           </div>
         </section>
 
-        {/* Slide 2 - Kelebihan, button section */}
         <section className="w-full min-h-[calc(100vh-60px)] flex flex-col items-center justify-center px-10 py-24 border-t border-slate-700/50">
           <div className="w-full max-w-[1440px] flex flex-col justify-center items-center gap-8 mx-auto">
             <h1 className="text-white font-bold text-4xl lg:text-3xl text-center">
@@ -112,7 +118,6 @@ export default function About() {
               </button>
             </div>
 
-            {/* Slider Container */}
             <div className="w-full max-w-4xl min-h-[#420px] flex items-center justify-center">
                 <AnimatePresence mode="wait">
                     {activeTab === "quality" && ( 
@@ -246,6 +251,8 @@ export default function About() {
                       <div className="bg-[#1a1a1a] w-full max-w-2xl rounded-2xl mt-5 border-[3px] border-white overflow-hidden shadow-xl aspect-video flex items-center justify-center">
                         <video autoPlay loop muted playsInline className="w-full h-full object-contain">
                           <source src="/Fast_testing.webm" type="video/webm"/> 
+                          <source src="/Fast_testing.mp4" type="video/webm"/> 
+
                           Browser tidak memumpuni untuk memutar video
                         </video>
                       </div>
