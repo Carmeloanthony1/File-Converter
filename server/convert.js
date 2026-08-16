@@ -7,6 +7,16 @@ const sharp = require('sharp');
 const { PDFDocument } = require('pdf-lib');
 
 const router = express.Router();
+const uploadDirr = path.join('/tmp', 'uploads');
+const convertedDirr = path.join('/tmp', 'converted');
+
+if(!fs.existsSync(uploadDirr)){
+    fs.mkdirSync(uploadDirr, {recursive:true});
+}
+
+if(!fs.existsSync(convertedDirr)){
+    fs.mkdirSync(convertedDirr, {recursive:true});
+}
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {

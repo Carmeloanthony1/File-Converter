@@ -15,7 +15,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use('/converted', express.static(path.join(__dirname, 'converted')));
+app.use('/api/converted', express.static(path.join(__dirname, 'converted')));
 app.use(express.json());
 
 const uploadDir = path.join('/tmp', 'uploads'); //kalau nanti ga ada foldernya, dia bikin sendiri
