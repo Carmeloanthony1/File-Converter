@@ -100,31 +100,29 @@ function Home() {
       setStatus("Mengunggah & Mengonversi file...");
       const token = localStorage.getItem("access_token");
 
-      const response = await axios.post("http://localhost:3000/api/convert", formData, {
+      const response = await axios.post("/api/convert", formData, {
         headers: { 
           "authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data"
-        }
-      });
-      
-      const data = response.data;
-      setProgress(50);
-      setStatus("Mendownload hasil konversi...");
-
-      const fileresponse = await axios.get(data.downloadURL, { 
-        responseType: 'blob',
-        onDownloadProgress: (progressEvent) => {
+        },
+        onUploadProgress: (progressEvent) => {
           if(progressEvent.total){
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            const total_progress = 50 + Math.round(percent / 2);
-            setProgress(total_progress);
-          } else {
-            setProgress(85);
+            const percent = Math.round((progressEvent.loaded * 80) / progressEvent.total);
+            setProgress(percent);
           }
         }
       });
 
-      const blob = new Blob([fileresponse.data]);
+      const data = response.data;
+      setProgress(50);
+      setStatus("Mendownload hasil konversi...");
+
+      const fileresponse = await fetch(data.download_URL);
+      if(!fileresponse.oke){
+        throw new Error("Gagal mengambil file hasil konversi dari server.");
+      }
+
+      const blob = await fileresponse.blob();
       const blob_url = window.URL.createObjectURL(blob);
 
       setDownload_URL(blob_url);
