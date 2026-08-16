@@ -117,8 +117,8 @@ function Home() {
       setProgress(50);
       setStatus("Mendownload hasil konversi...");
 
-      const fileresponse = await fetch(data.download_URL);
-      if(!fileresponse.oke){
+      const fileresponse = await fetch(data.downloadURL);
+      if(!fileresponse.ok){
         throw new Error("Gagal mengambil file hasil konversi dari server.");
       }
 
@@ -132,8 +132,20 @@ function Home() {
       setStatus("Proses convert selesai, silahkan click tombol download");
 
     } catch(error){
-      console.error("Terjadi error saat melakukan convert : ", error);
-      alert(error.response?.data?.error || "Terjadi kesalahan pada server");
+      console.error("Terjadi error saat melakukan convert: ", error);
+      
+      const errData = error.response?.data;
+      let errorMessage = "Terjadi kesalahan pada server";
+
+      if(typeof errData === "string"){
+        errorMessage = errData;
+      } else if (errData && typeof errData === "object"){
+        errorMessage = errData.error || errData.message || JSON.stringify(errData);
+      } else if (error.message){
+        errorMessage = error.message;
+      }
+
+      alert(errorMessage);
       setIs_converting(false);
       setProgress(0);
       setStatus("");
