@@ -20,7 +20,7 @@ if(!fs.existsSync(convertedDirr)){
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, 'uploads/'); 
+        callback(null, uploadDirr   ); 
     },
     filename: (req, file, callback) => {
         const unique = crypto.randomUUID() + '-' + file.originalname;
@@ -42,7 +42,7 @@ router.post('/convert', upload.single('file'), async (req, res) => {
 
         const inputpath = uploadFile.path;
         const ouputfilename = `converted-${Date.now()}.${targetformat}`;
-        const outputpath = path.join(__dirname, 'converted', ouputfilename);
+        const outputpath = path.join(convertedDirr, ouputfilename);
 
         if(['jpg', 'jpeg', 'png', 'webp'].includes(targetformat)){
             await sharp(inputpath)
@@ -81,7 +81,7 @@ router.post('/convert', upload.single('file'), async (req, res) => {
             fs.unlinkSync(inputpath);
         }
 
-        const downloadURL = `http://localhost:3000/converted/${ouputfilename}`;
+        const downloadURL = `/api/converted/${ouputfilename}`;
         return res.status(200).json({
             message: "File berhasil di konversi", 
             downloadURL: downloadURL,
@@ -89,6 +89,9 @@ router.post('/convert', upload.single('file'), async (req, res) => {
         });
     } catch(error){
         console.error("Error konversi : ", error);
+        if(req.file?.path && fs.existsSync(req.file.path)){
+            fs.unlinkSync(req.file.path);
+        }
         return res.status(500).json({
             error: "Terdapat kesalahan server saat memproses file"
         });
